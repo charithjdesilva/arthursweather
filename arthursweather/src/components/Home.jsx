@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 import LottieAnimation from './LottieAnimation';
 import WeatherCard from './WeatherCard';
-import TimeSlider from './TimeSlider'; // Import the TimeSlider component
 import { format } from 'date-fns'; // Import date-fns for date formatting
+import ResultCard from './ResultCard';
 
 const Home = () => {
   const [latitude, setLatitude] = useState('');
@@ -91,29 +91,59 @@ const Home = () => {
 
   return (
     <>
-      <div className="container-fluid">
+      <section className="container-fluid">
         <NavBar className="w-100" />
         <h1 className='mt-3'>Mickey Arthur's Weather App</h1>
-        <div className="current-weather card">
+        <div className="current-weather card p-3">
           <h3>Current Weather in Colombo</h3>
           {weatherData && (
             <>
-              <p className="fw-bold">
-                <img
-                  id="wicon"
-                  src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
-                  alt="Weather icon"
-                />
-              </p>
-              <p className="fw-bold">Temperature: {weatherData.main.temp}°C</p>
-              <p className="fw-bold">Humidity: {weatherData.main.humidity}%</p>
-              <p className="fw-bold">Wind Speed: {weatherData.wind.speed} ms⁻¹</p>
-              <p className="fw-bold">Description: {weatherData.weather[0].description}</p>
+              <div className='row'>
+                <div className='col'>
+                  <div className="card text-bg-dark p-2" style={{ maxWidth: "18rem", minHeight: "100%" }}>
+                    <div className="card-header">Temperature</div>
+                    <div className="card-body">
+                      <h3 className="fw-bold"><i className="fa-solid fa-temperature-half"></i> {weatherData.main.temp}°C</h3>
+                    </div>
+                  </div>
+                </div>
+                <div className='col'>
+                  <div className="card text-bg-dark p-2" style={{ maxWidth: "18rem", minHeight: "100%" }}>
+                    <div className="card-header">Humidity</div>
+                    <div className="card-body">
+                      <h3 className="fw-bold"><i className="fa-solid fa-droplet"></i> {weatherData.main.humidity}%</h3>
+                    </div>
+                  </div>
+                </div>
+                <div className='col'>
+                  <div className="card text-bg-dark p-2" style={{ maxWidth: "18rem", minHeight: "100%" }}>
+                    <div className="card-header">Wind Speed</div>
+                    <div className="card-body">
+                      <h3 className="fw-bold"><i className="fa-solid fa-wind"></i> {weatherData.wind.speed} ms⁻¹</h3>
+                    </div>
+                  </div>
+                </div>
+                <div className='col'>
+                  <div className="card text-bg-dark p-2" style={{ maxWidth: "18rem", minHeight: "100%" }}>
+                    <div className="card-header">Description</div>
+                    <div className="card-body">
+                      <img
+                        id="wicon"
+                        src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
+                        alt="Weather icon"
+                        className='d-inline mx-2'
+                      />
+                      <h5 className="fw-bold d-inline">{weatherData.weather[0].description}</h5>
+                      {/* <p className="fw-bold d-inline">{weatherData.weather[0].description}</p> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </>
           )}
         </div>
-      </div>
-      <div className='container-fluid p-5 pt-0'>
+      </section>
+      <section className='container-fluid p-5 pt-0' id="SearchSection">
         <div className='row'>
           <div className="search-form col-md-6 p-4 mt-3 text-start">
             <form onSubmit={handleSubmit}>
@@ -146,18 +176,14 @@ const Home = () => {
           </div>
           {searched && searchedWeatherData && (
             <div className="search-results col-md-6 mt-3 d-flex justify-content-center align-items-center flex-column">
-              <h4 className="fw-bold">City: {searchedWeatherData.name}</h4>
-              <p className="fw-bold">
-                <img
-                  id="wicon"
-                  src={`http://openweathermap.org/img/w/${searchedWeatherData.weather[0].icon}.png`}
-                  alt="Weather icon"
-                />
-              </p>
-              <p className="fw-bold">Temperature: {searchedWeatherData.main.temp}°C</p>
-              <p className="fw-bold">Humidity: {searchedWeatherData.main.humidity}%</p>
-              <p className="fw-bold">Wind Speed: {searchedWeatherData.wind.speed} ms⁻¹</p>
-              <p className="fw-bold">Description: {searchedWeatherData.weather[0].description}</p>
+              <ResultCard
+                title={`City: ${searchedWeatherData.name}`}
+                icon={searchedWeatherData.weather[0].icon}
+                temperature={searchedWeatherData.main.temp}
+                humidity={searchedWeatherData.main.humidity}
+                windSpeed={searchedWeatherData.wind.speed}
+                description={searchedWeatherData.weather[0].description}
+              />
             </div>
           )}
           {!searched && !searchedWeatherData && (
@@ -166,7 +192,7 @@ const Home = () => {
             </div>
           )}
         </div>
-        <div className='row' id="ForecastSection">
+        <section className='row' id="ForecastSection">
         {Object.keys(forecastData).map((date, index, array) => (
           <WeatherCard
             key={date}
@@ -175,8 +201,8 @@ const Home = () => {
             isLast={index === array.length - 1}
           />
         ))}
-        </div>
-      </div>
+        </section>
+      </section>
     </>
   );
 };

@@ -39,7 +39,7 @@ const extractTimeFromTimestamp = (timestamp) => {
   };
 
   return (
-    <div className="col-md-4 my-2">
+    <div className="col-md-4 my-2 card">
       {selectedData && (
         <div>
           <h4>Date: {selectedData.dt_txt}</h4>

@@ -43,10 +43,10 @@ const NavBar = () => {
                 <Link className="nav-link mx-2" to="/home">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link mx-2" to="/about">About</Link>
+                <Link className="nav-link mx-2" to="/home#SearchSection">Search</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link mx-2" to="/login">Login</Link>
+                <Link className="nav-link mx-2" to="/home#ForecastSection">Forecast</Link>
               </li>
             </ul>
             {/* Logout button */}
