@@ -18,7 +18,8 @@ export default function Login() {
   const [loginError, setLoginError] = useState(null);
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
       // User is logged in. Navigate to the home page.
@@ -33,7 +34,7 @@ export default function Login() {
     <div className="container vh-100 d-flex justify-content-center align-items-center">
       <div className="row">
         <div className="col">
-          <h1>Mickey Arthur's Weather App</h1>
+          <h1 className='mb-4'>Mickey Arthur's Weather App</h1>
           <img
             src="/Micky.jpg"
             alt="Weather App Logo"

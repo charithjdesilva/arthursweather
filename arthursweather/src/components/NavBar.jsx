@@ -20,44 +20,47 @@ const NavBar = () => {
         };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
-        <Link className="navbar-brand" to="/">Mickey Arthur's Weather App</Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item ms-5">
-              <Link className="nav-link mx-2" to="/home">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link mx-2" to="/about">About</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link mx-2" to="/login">Login</Link>
-            </li>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container-fluid">
+          <Link class="navbar-brand" to="/">
+            <img src="./logo.svg" alt="Logo" width="32" height="32" class="d-inline-block align-text-top me-2" />
+            Mickey Arthur's Weather App
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse justify-content-around" id="navbarNav">
+            <ul className="navbar-nav  flex-grow-1 justify-content-center">
+              <li className="nav-item">
+                <Link className="nav-link mx-2" to="/home">Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link mx-2" to="/about">About</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link mx-2" to="/login">Login</Link>
+              </li>
+            </ul>
             {/* Logout button */}
-            <li className="nav-item">
+            <div className="nav-item d-grid gap-2">
               <button
-                className="nav-link mx-2 btn btn-link"
+                className="mx-2 btn btn-outline-danger"
                 onClick={handleLogout}
               >
                 Logout
               </button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
   );
 };
 
