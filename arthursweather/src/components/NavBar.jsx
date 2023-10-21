@@ -22,8 +22,8 @@ const NavBar = () => {
   return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link class="navbar-brand" to="/">
-            <img src="./logo.svg" alt="Logo" width="32" height="32" class="d-inline-block align-text-top me-2" />
+          <Link className="navbar-brand" to="/">
+            <img src="./logo.svg" alt="Logo" width="32" height="32" className="d-inline-block align-text-top me-2" />
             Mickey Arthur's Weather App
           </Link>
           <button
