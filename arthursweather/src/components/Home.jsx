@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 import LottieAnimation from './LottieAnimation';
-import WeatherCard from './WeatherCard';
 import { format } from 'date-fns'; // Import date-fns for date formatting
 import ResultCard from './ResultCard';
+import ForecastLimited from './ForecastLimited';
+import ForecastExtended from './ForecastExtended';
+import Footer from './Footer';
 
 const Home = () => {
   const [latitude, setLatitude] = useState('');
@@ -12,7 +14,9 @@ const Home = () => {
   const [searchedWeatherData, setSearchedWeatherData] = useState(null);
   const [searched, setSearched] = useState(false);
   const [forecastData, setForecastData] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(''); 
+  const [selectedDate, setSelectedDate] = useState('');
+  
+  const [isExtended, setIsExtended] = useState(false);
 
   const apiKey = '46d64485ddd2aef6c83c9ceb10139c30';
 
@@ -35,12 +39,8 @@ const Home = () => {
 
   useEffect(() => {
     fetchWeatherData(6.9271, 79.8612);
+    fetchForecastData(6.9271, 79.8612);
   }, []);
-
-  const formatDate = (dateStr) => {
-    const date = new Date(dateStr);
-    return format(date, 'yyyy-MM-dd');
-  };
 
   const fetchWeatherData = async (lat, lon) => {
     try {
@@ -87,6 +87,10 @@ const Home = () => {
       fetchForecastData(latitude, longitude);
       setSearched(true);
     }
+  };
+
+  const handleExtendClick = () => {
+    setIsExtended(!isExtended);
   };
 
   return (
@@ -143,7 +147,7 @@ const Home = () => {
           )}
         </div>
       </section>
-      <section className='container-fluid p-5 pt-0' id="SearchSection">
+      <section className='container-fluid p-5 py-0' id="SearchSection">
         <div className='row'>
           <div className="search-form col-md-6 p-4 mt-3 text-start">
             <form onSubmit={handleSubmit}>
@@ -193,16 +197,14 @@ const Home = () => {
           )}
         </div>
       </section>
-      <section className='row' id="ForecastSection">
-      {Object.keys(forecastData).map((date, index, array) => (
-        <WeatherCard
-          key={date}
-          data={forecastData[date]}
-          isFirst={index === 0}
-          isLast={index === array.length - 1}
-        />
-      ))}
+      <section className='container-fluid pt-0' id="ForecastSection">
+          {isExtended ? (
+            <ForecastExtended forecastData={forecastData} onExtendClick={handleExtendClick} />
+          ) : (
+            <ForecastLimited forecastData={forecastData} onExtendClick={handleExtendClick} />
+          )}
       </section>
+      <Footer />
     </>
   );
 };

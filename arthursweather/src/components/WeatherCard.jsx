@@ -19,6 +19,7 @@ const WeatherCard = ({ data, isFirst, isLast }) => {
     if (isFirst) {
       // Set time based on the first timestamp in the data
       setTime(extractTimeFromTimestamp(data[0].dt_txt));
+      // console.log(extractTimeFromTimestamp(data[0].dt_txt));
     } else if (isLast) {
       // Set time based on the last timestamp in the data
       setTime(extractTimeFromTimestamp(data[data.length - 1].dt_txt));
@@ -39,7 +40,7 @@ const extractTimeFromTimestamp = (timestamp) => {
   };
 
   return (
-    <div className="col-md-4 my-2 card">
+    <div className="col-md-4 my-2 card w-100">
       {selectedData && (
         <div>
           <h4>Date: {selectedData.dt_txt}</h4>
