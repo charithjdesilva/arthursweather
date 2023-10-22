@@ -50,10 +50,10 @@ const extractTimeFromTimestamp = (timestamp) => {
               alt="Weather icon"
             />
           </p>
-          <p>Description: {selectedData.weather[0].description}</p>
-          <p>Temperature: {selectedData.main.temp}°C</p>
-          <p>Humidity: {selectedData.main.humidity}%</p>
-          <p>Wind: {selectedData.wind.speed}ms⁻¹</p>
+          <p><b>Description:</b> {selectedData.weather[0].description}</p>
+          <p><b>Temperature:</b> {selectedData.main.temp}°C</p>
+          <p><b>Humidity:</b> {selectedData.main.humidity}%</p>
+          <p><b>Wind:</b> {selectedData.wind.speed}ms⁻¹</p>
         </div>
       )}
 

@@ -99,32 +99,32 @@ const Home = () => {
           {weatherData && (
             <>
               <div className='row'>
-                <div className='col'>
-                  <div className="card text-bg-dark p-2" style={{ maxWidth: "18rem", minHeight: "100%" }}>
+                <div className='col-xs-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
+                  <div className="card text-bg-dark p-2" style={{ minHeight: "100%" }}>
                     <div className="card-header">Temperature</div>
                     <div className="card-body">
                       <h3 className="fw-bold"><i className="fa-solid fa-temperature-half"></i> {weatherData.main.temp}°C</h3>
                     </div>
                   </div>
                 </div>
-                <div className='col'>
-                  <div className="card text-bg-dark p-2" style={{ maxWidth: "18rem", minHeight: "100%" }}>
+                <div className='col-xs-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
+                  <div className="card text-bg-dark p-2" style={{ minHeight: "100%" }}>
                     <div className="card-header">Humidity</div>
                     <div className="card-body">
                       <h3 className="fw-bold"><i className="fa-solid fa-droplet"></i> {weatherData.main.humidity}%</h3>
                     </div>
                   </div>
                 </div>
-                <div className='col'>
-                  <div className="card text-bg-dark p-2" style={{ maxWidth: "18rem", minHeight: "100%" }}>
+                <div className='col-xs-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
+                  <div className="card text-bg-dark p-2" style={{ minHeight: "100%" }}>
                     <div className="card-header">Wind Speed</div>
                     <div className="card-body">
                       <h3 className="fw-bold"><i className="fa-solid fa-wind"></i> {weatherData.wind.speed} ms⁻¹</h3>
                     </div>
                   </div>
                 </div>
-                <div className='col'>
-                  <div className="card text-bg-dark p-2" style={{ maxWidth: "18rem", minHeight: "100%" }}>
+                <div className='col-xs-12 col-sm-6 col-md-3'>
+                  <div className="card text-bg-dark p-2" style={{ minHeight: "100%" }}>
                     <div className="card-header">Description</div>
                     <div className="card-body">
                       <img
@@ -192,16 +192,16 @@ const Home = () => {
             </div>
           )}
         </div>
-        <section className='row' id="ForecastSection">
-        {Object.keys(forecastData).map((date, index, array) => (
-          <WeatherCard
-            key={date}
-            data={forecastData[date]}
-            isFirst={index === 0}
-            isLast={index === array.length - 1}
-          />
-        ))}
-        </section>
+      </section>
+      <section className='row' id="ForecastSection">
+      {Object.keys(forecastData).map((date, index, array) => (
+        <WeatherCard
+          key={date}
+          data={forecastData[date]}
+          isFirst={index === 0}
+          isLast={index === array.length - 1}
+        />
+      ))}
       </section>
     </>
   );
