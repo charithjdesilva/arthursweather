@@ -22,10 +22,10 @@ const NavBar = () => {
   return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <a className="navbar-brand" href="#">
             <img src="./logo.svg" alt="Logo" width="32" height="32" className="d-inline-block align-text-top me-2" />
             Mickey Arthur's Weather App
-          </Link>
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -40,13 +40,13 @@ const NavBar = () => {
           <div className="collapse navbar-collapse justify-content-around" id="navbarNav">
             <ul className="navbar-nav  flex-grow-1 justify-content-center">
               <li className="nav-item">
-                <Link className="nav-link mx-2" to="/home">Home</Link>
+                <a className="nav-link mx-2" href="#">Home</a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link mx-2" to="/home#SearchSection">Search</Link>
+                <a className="nav-link mx-2" href="#SearchSection">Search</a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link mx-2" to="/home#ForecastSection">Forecast</Link>
+                <a className="nav-link mx-2" href="#ForecastSection">Forecast</a>
               </li>
             </ul>
             {/* Logout button */}
