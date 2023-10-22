@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
-// Create a LoginError component
 const LoginError = ({ errorMessage }) => {
   return (
     <div className="alert alert-danger" role="alert">
@@ -16,18 +15,22 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(null);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // User is logged in. Navigate to the home page.
       navigate('/home');
     } catch (error) {
-      setLoginError(error.message); // Set the login error message
+      setLoginError(error.message);
       console.error(error.message);
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLogin(e);
   };
 
   return (
@@ -42,28 +45,30 @@ export default function Login() {
             width="150vh"
             height="150vh"
           />
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="form-control mt-3"
-            size={50}
+          <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-control mt-3"
+              size={50}
             />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="form-control mt-3"
-            size={50}
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="form-control mt-3"
+              size={50}
             />
-          <div className="d-grid gap-2">
-            <button onClick={handleLogin} className="btn btn-primary btn-block my-3">
-              Login
-            </button>
-          </div>
-            {loginError && <LoginError errorMessage={loginError} />}
+            <div className="d-grid gap-2">
+              <button type="submit" className="btn btn-primary btn-block my-3">
+                Login
+              </button>
+            </div>
+          </form>
+          {loginError && <LoginError errorMessage={loginError} />}
         </div>
       </div>
     </div>

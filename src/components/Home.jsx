@@ -18,6 +18,10 @@ const Home = () => {
   
   const [isExtended, setIsExtended] = useState(false);
 
+  // Define state variables for error messages
+  const [latitudeError, setLatitudeError] = useState("");
+  const [longitudeError, setLongitudeError] = useState("");
+
   const apiKey = '46d64485ddd2aef6c83c9ceb10139c30';
 
   const arrangeForecastsByDay = (forecasts) => {
@@ -154,22 +158,30 @@ const Home = () => {
               <div className="mb-3">
                 <label className="form-label">Latitude</label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   placeholder="Enter latitude"
                   value={latitude}
                   onChange={(e) => setLatitude(e.target.value)}
+                  min="-90"
+                  max="90"
+                  step="0.01"
                 />
+                {latitudeError && <div className="text-danger">{latitudeError}</div>}
               </div>
               <div className="mb-3">
                 <label className="form-label">Longitude</label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   placeholder="Enter longitude"
                   value={longitude}
                   onChange={(e) => setLongitude(e.target.value)}
+                  min="-180"
+                  max="180"
+                  step="0.01"
                 />
+                {longitudeError && <div className="text-danger">{longitudeError}</div>}
               </div>
               <div className="d-grid gap-2">
                 <button type="submit" className="btn btn-primary">
